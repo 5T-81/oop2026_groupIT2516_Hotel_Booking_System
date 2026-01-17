@@ -18,7 +18,7 @@ public class Main {
                  ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                    System.out.println("Database time: " + rs.getTimestamp(1));
+                    System.out.println("edu.aitu.oop3.db.Database time: " + rs.getTimestamp(1));
                 }
             }
 
