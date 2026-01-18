@@ -1,0 +1,63 @@
+What try-with-resources really means
+When you write:
+
+try (Connection con = db.getConnection()) {
+    ...
+}
+Java promises:
+“When this block finishes (success or error), I will automatically close the resource.”
+So:
+con.close() is called automatically
+You don’t need to remember to close it manually
+PreparedStatement is ALSO a resource
+PreparedStatement:
+uses DB memory, holds server-side state, must be closed after use
+
+What happens if you don’t close PreparedStatement?
+ If you write:
+ try (Connection con = db.getConnection()) {
+     PreparedStatement stmt = con.prepareStatement(sql);
+     ...
+ }
+ Then:
+ Connection is closed
+ ❌ PreparedStatement may stay open longer than needed
+ ❌ can cause resource leaks
+ ❌ especially dangerous in real systems with many requests
+ #also ResultSet must by closed
+ ------------------------------------------------------------------------------------------------------------------------
+ SELECT COUNT(*)
+ FROM reservations r
+ JOIN rooms ro ON ro.room_id = r.room_id
+ WHERE r.room_id = ?
+   AND ro.status = 'available'
+   AND r.status <> 'CANCELLED'
+   AND r.check_in < ?
+   AND r.check_out > ?
+
+1️⃣SELECT COUNT(*) means: “Count how many rows match my conditions” If 0 rows → result = 0, If 3 rows → result = 3
+We don’t care about the data,we only care if something exists or not.
+
+2️⃣ FROM reservations r means: “Look inside the reservations table”, r is just a nickname
+
+3️⃣ JOIN rooms ro ON ro.room_id = r.room_id means: “Connect reservations with rooms using room_id”, ro a nickname for room
+join them to access ro.status
+
+4️⃣ WHERE r.room_id = ? means: “Only check reservations for THIS room”
+
+5️⃣ AND ro.status = 'available' means: “Only consider rooms that are marked as available”
+
+6️⃣ AND r.status <> 'CANCELLED' means: “Ignore cancelled reservations”, <> means NOT EQUAL
+
+7️⃣ AND r.check_in < ? means: “This existing reservation starts BEFORE the new reservation ends”
+AND r.check_out > ? means: “This existing reservation ends AFTER the new reservation starts”
+Together (AND is IMPORTANT): “This existing reservation starts before the new one ends  AND ends after the new one starts”
+⬆️ This means their time ranges cross ❌ Overlap (NOT available)
+
+The ONE rule you must remember (very important)
+Two time ranges overlap IF AND ONLY IF:
+"""existing_start < new_end
+AND
+existing_end > new_start"""
+
+
