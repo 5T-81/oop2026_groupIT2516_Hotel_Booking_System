@@ -1,4 +1,4 @@
-package edu.aitu.oop3.db;
+package edu.aitu.oop3.entities;
 
 public class Guests {
     private int guest_id;

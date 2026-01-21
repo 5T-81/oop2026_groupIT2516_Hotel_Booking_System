@@ -1,6 +1,6 @@
-import edu.aitu.oop3.db.Database;
+package edu.aitu.oop3;
+
 import edu.aitu.oop3.db.DatabaseConnection;
-import edu.aitu.oop3.db.PostgresDatabase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,5 @@
-package edu.aitu.oop3.db;
+package edu.aitu.oop3.entities;
 
-import java.lang.classfile.instruction.LocalVariable;
 import java.time.LocalDate;
 
 public class Reservations {
@@ -24,7 +23,7 @@ public int getReservation_id() {return reservation_id;}
 
     @Override
      public String toString() {
-    return "Reservations{reservation_id=" + reservation_id + ", guest_id=" + guest_id + ", room_id=" + room_id + ", check_in=" + check_in + "check_out=" + check_out + "}";
+    return "Reservations{reservation_id=" + reservation_id + ", guest_id=" + guest_id + ", room_id=" + room_id + ", check_in=" + check_in + ", check_out=" + check_out + "}";
 
     }
 }
