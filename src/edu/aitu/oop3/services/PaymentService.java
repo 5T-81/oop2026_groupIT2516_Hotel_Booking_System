@@ -15,8 +15,10 @@ public class PaymentService implements PaymentServiceInterface {
         this.paymentRepository = paymetnRepository;
         this.reservationRepository = reservationRepository;
     }
+
     //methods
-    public boolean proccessPayment(String cardNumber, double amount) {
+    @Override //check if pay should return boolean or no need.(if not update it to void here and in interface too)
+    public boolean pay(String cardNumber, double amount) {//(need update) use payment repo to insert the data created
         if (cardNumber == null || cardNumber.isEmpty()) {
             throw new PaymentDeclinedException("Card number is invalid");
         }
