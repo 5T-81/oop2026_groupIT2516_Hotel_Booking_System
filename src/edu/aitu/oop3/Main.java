@@ -33,13 +33,13 @@ public class Main {
 
         //creating repos
         ReservationRepository reservationRepo = new PostgresReservationRepository(db);
-        PaymentRepository paymentRepo =new PaymentRepository();
+        PaymentRepository paymentRepo =new PaymentRepository(db);
         //setting room availability service
         RoomAvailabilityService availabilityService = new RoomAvailabilityService(reservationRepo);
         //setting payment service
         PaymentService paymentService = new PaymentService(paymentRepo, reservationRepo);
         //Reservation
-        ReservationService reservationService = new ReservationService(reservationRepo, availabilityService, paymentService);
+        ReservationService reservationService = new ReservationService(reservationRepo,paymentService,availabilityService);
 
 
 
