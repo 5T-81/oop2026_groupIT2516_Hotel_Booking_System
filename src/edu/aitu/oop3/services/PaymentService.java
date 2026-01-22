@@ -1,9 +1,21 @@
 package edu.aitu.oop3.services;
 
+import edu.aitu.oop3.repositories.ReservationRepository;
+import edu.aitu.oop3.repositories.PaymentRepository;
 import edu.aitu.oop3.services.exceptions.PaymentDeclinedException;
 import edu.aitu.oop3.services.interfaces.PaymentServiceInterface;
 
 public class PaymentService implements PaymentServiceInterface {
+
+    //fields
+    private final PaymentRepository paymentRepository;
+    private final ReservationRepository reservationRepository;
+    //constructor
+    public PaymentService(PaymentRepository paymetnRepository, ReservationRepository reservationRepository) {
+        this.paymentRepository = paymetnRepository;
+        this.reservationRepository = reservationRepository;
+    }
+    //methods
     public boolean proccessPayment(String cardNumber, double amount) {
         if (cardNumber == null || cardNumber.isEmpty()) {
             throw new PaymentDeclinedException("Card number is invalid");
