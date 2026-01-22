@@ -11,7 +11,7 @@ public class ReservationService implements ReservationServiceInterface {
     private final PaymentService paymentService;
     private final RoomAvailabilityService availabilityService;
     //constructor
-    public ReservationService(ReservationRepository reservationRepository, PaymentService paymentService, RoomAvailabilityService availabilityService,) {
+    public ReservationService(ReservationRepository reservationRepository, PaymentService paymentService, RoomAvailabilityService availabilityService) {
         this.reservationRepository = reservationRepository;
         this.paymentService = paymentService;
         this.availabilityService = availabilityService;
