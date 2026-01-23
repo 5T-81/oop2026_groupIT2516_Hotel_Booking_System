@@ -54,7 +54,7 @@ public class Main {
         System.out.println("DEBUG checkIn = " + check_in);
         System.out.println("DEBUG checkOut = " + check_out);
 
-        int room_id = 4;
+        int room_id = 3;
         boolean available = availabilityService.isRoomAvailable(room_id,check_in,check_out);
         System.out.println("Room"+ room_id+ " is available? " + available);
 
@@ -76,6 +76,7 @@ public class Main {
             }
             //test reservation overlapping
             //int reservation2_id = reservationService.createReservation(guest_id,room_id,check_in,check_out);
+            //must be commented so that we can cancel any run!!!
 
             //4) user story: cancellation
             reservationService.cancelReservation(reservation_id);
