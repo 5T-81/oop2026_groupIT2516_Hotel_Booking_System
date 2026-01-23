@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ReservationServiceInterface {
     //for creating
-    int createReservation(int room_id, LocalDate check_in, LocalDate check_out);
+    int createReservation(int guest_id, int room_id, LocalDate check_in, LocalDate check_out);
+
     //for cancelling
     void cancelReservation(int reservation_id);
 
