@@ -11,15 +11,13 @@ import java.time.LocalDate;
 
 public class ReservationService implements ReservationServiceInterface {
     private final ReservationRepository reservationRepository;
-    private final PaymentService paymentService;
     private final RoomAvailabilityService availabilityService;
-    private final GuestRepository guestRepository;
+
     //constructor
     public ReservationService(ReservationRepository reservationRepository, PaymentService paymentService, RoomAvailabilityService availabilityService, GuestRepository guestRepository) {
         this.reservationRepository = reservationRepository;
-        this.paymentService = paymentService;
         this.availabilityService = availabilityService;
-        this.guestRepository = guestRepository;
+
     }
 
     @Override
