@@ -49,8 +49,8 @@ public class Main {
 
         //2) user story:
         //enter date
-        LocalDate check_in = LocalDate.of(2026, 10, 20);
-        LocalDate check_out = LocalDate.of(2026, 1, 31);
+        LocalDate check_in = LocalDate.of(2026, 2, 10);
+        LocalDate check_out = LocalDate.of(2026, 2, 20);
         System.out.println("DEBUG checkIn = " + check_in);
         System.out.println("DEBUG checkOut = " + check_out);
         //room for reservation
@@ -72,7 +72,7 @@ public class Main {
             try {
                 paymentService.pay(reservation_id, 0, "card"); // should fail
             } catch (PaymentDeclinedException e) {
-                System.out.println("Payment declined test OK: " + e.getMessage());
+                System.out.println("Payment declined test: " + e.getMessage());
             }
             //test reservation overlapping
             //int reservation2_id = reservationService.createReservation(guest_id,room_id,check_in,check_out);
