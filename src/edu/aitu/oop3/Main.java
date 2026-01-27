@@ -48,20 +48,20 @@ public class Main {
         ReservationService reservationService = new ReservationService(reservationRepo,paymentService,availabilityService,guestRepository);
 
         //2) user story:
-        //check availability before any reservation
-        LocalDate check_in = LocalDate.of(2026, 1, 20);
+        //enter date
+        LocalDate check_in = LocalDate.of(2026, 10, 20);
         LocalDate check_out = LocalDate.of(2026, 1, 31);
         System.out.println("DEBUG checkIn = " + check_in);
         System.out.println("DEBUG checkOut = " + check_out);
+        //room for reservation
+        int room_id = 5;
 
-        int room_id = 3;
-        boolean available = availabilityService.isRoomAvailable(room_id,check_in,check_out);
-        System.out.println("Room"+ room_id+ " is available? " + available);
-
-        //3) user story:
-        //create guest first
-        int guest_id = guestRepository.createGuest("User44","Testing4");
         try {
+            //check availability before any reservation
+            boolean available = availabilityService.isRoomAvailable(room_id,check_in,check_out);
+            System.out.println("Room "+ room_id+ " is available? " + available);
+            //create guest first
+            int guest_id = guestRepository.createGuest("User44","Testing4");
             //create reservation
             int reservation_id = reservationService.createReservation(guest_id,room_id,check_in,check_out);
             System.out.println("Reservation's ID: " + reservation_id + " is created.");
@@ -70,7 +70,7 @@ public class Main {
             System.out.println("Payment success. Payment ID: " + payment_id);
             //payment decline (test)
             try {
-                paymentService.pay(reservation_id, 0.0, "card"); // should fail
+                paymentService.pay(reservation_id, 0, "card"); // should fail
             } catch (PaymentDeclinedException e) {
                 System.out.println("Payment declined test OK: " + e.getMessage());
             }
@@ -86,6 +86,6 @@ public class Main {
             System.out.println("Business error: "+ e.getMessage());
         }
 
-
+            System.out.println("Finished");
     }
 }
