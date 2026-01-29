@@ -5,9 +5,9 @@ public class Rooms {
     private double  room_number;
     private String status;
 
-    public  Rooms(int room_id, double room_number, String status){
+    public  Rooms(int room_id, String status){
         this.room_id = room_id;
-        this.room_number = room_number;
+        //this.room_number = room_number;
         this.status = status;;
     }
     public int getRoom_id() {return room_id;}
