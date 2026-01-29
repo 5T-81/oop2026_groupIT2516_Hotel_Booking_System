@@ -21,7 +21,6 @@ public class GuestRepository {
             try (ResultSet rs = stmt.getGeneratedKeys()){
                 rs.next();
                 return rs.getInt(1);
-
             }
         }catch (SQLException e){
             throw new RuntimeException("DB error while creating guest");

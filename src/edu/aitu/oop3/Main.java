@@ -86,6 +86,6 @@ public class Main {
             System.out.println("Business error: "+ e.getMessage());
         }
 
-            System.out.println("Finished");
+        System.out.println("Finished:)");
     }
 }

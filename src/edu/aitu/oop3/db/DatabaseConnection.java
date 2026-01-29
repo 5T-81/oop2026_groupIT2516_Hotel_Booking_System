@@ -30,7 +30,7 @@ public class DatabaseConnection {
         }
     }
 
-
+    //empty constructor
     private DatabaseConnection() {
         // no instances
     }
@@ -39,4 +39,4 @@ public class DatabaseConnection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
 
     }
-} //1
+}

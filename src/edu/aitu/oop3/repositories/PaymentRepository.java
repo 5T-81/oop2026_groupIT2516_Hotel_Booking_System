@@ -19,13 +19,14 @@ public class PaymentRepository {
                 """;
 
         try(Connection con = db.getConnection(); PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            //set the values
             stmt.setInt(1, reservation_id);
             stmt.setDouble(2, amount);
             stmt.setString(3, payment_method);
 
             stmt.executeUpdate(); //actual inserting
-
-            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                //
+            try (ResultSet rs = stmt.getGeneratedKeys()) {//from stmt returned value of id
                 rs.next();
                 return rs.getInt(1);
             }

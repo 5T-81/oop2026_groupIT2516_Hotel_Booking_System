@@ -10,6 +10,7 @@ import java.util.List;
 
 public class PostgresReservationRepository implements ReservationRepository {
     private final Database db;
+    //constructor
     public PostgresReservationRepository(Database db) {
         this.db = db;
     }
@@ -23,7 +24,7 @@ public class PostgresReservationRepository implements ReservationRepository {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             //if sql string has placeholders ?, use setX()
-            stmt.setInt(1,reservation.getGuest_id());
+            stmt.setInt(1,reservation.getGuest_id());//comes from the obj -->create(obj)
             stmt.setInt(2, reservation.getRoom_id());
             stmt.setDate(3, Date.valueOf(reservation.getCheck_in()));
             stmt.setDate(4,Date.valueOf(reservation.getCheck_out()));
@@ -32,10 +33,10 @@ public class PostgresReservationRepository implements ReservationRepository {
             if (rows == 0) {
                 throw new RuntimeException("Creating reservation failed, no rows affected.");
             }
-            try (var keys = stmt.getGeneratedKeys()) { //This returns a ResultSet containing:the auto-generated values ,usually the primary key (reservation_id)
-                if (keys.next()) { //Cursor starts before first row, next() moves to the first row
+            try (ResultSet rs =stmt.getGeneratedKeys()) { //This returns a ResultSet containing:the auto-generated values ,usually the primary key (reservation_id)
+                if (rs.next()) { //Cursor starts before first row, next() moves to the first row
                     //this is the returned value from create method
-                    return keys.getInt(1); //column 1 of the generated keys result which is in this case the primary key
+                    return rs.getInt(1); //column 1 of the generated keys result which is in this case the primary key
                 } else {
                     throw new RuntimeException("Creating reservation failed, no ID obtained.");
                 }
@@ -116,7 +117,7 @@ public class PostgresReservationRepository implements ReservationRepository {
             stmt.setInt(1, id); //place id in the placeholder
             int rows = stmt.executeUpdate(); //update the database(deleting)
 
-            if (rows == 0) {//ensure id existed and was actually deleted
+            if (rows == 0) {//no row was updated/deleted, so id doesn't exist
                 throw new RuntimeException("No reservation found with id " + id);
             }
 

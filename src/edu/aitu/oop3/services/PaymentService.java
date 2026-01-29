@@ -31,7 +31,7 @@ public class PaymentService implements PaymentServiceInterface {
         if (amount > 1000) {
     throw new PaymentDeclinedException("Payment declined: amount exceeds limit");
         }
-        //create payment in repo
+        //create payment in repo and return its id
         int paymentId = paymentRepository.createPayment(reservation_id, amount,payment_method);
         return paymentId;
     }
