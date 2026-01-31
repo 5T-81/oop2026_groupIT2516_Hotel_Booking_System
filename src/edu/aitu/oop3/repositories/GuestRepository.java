@@ -1,6 +1,9 @@
 package edu.aitu.oop3.repositories;
 
 import edu.aitu.oop3.db.Database;
+import edu.aitu.oop3.entities.Guests;
+import edu.aitu.oop3.entities.Reservations;
+import edu.aitu.oop3.milestone2.generics.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;

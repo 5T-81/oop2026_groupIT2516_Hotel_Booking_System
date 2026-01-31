@@ -1,14 +1,16 @@
 package edu.aitu.oop3.repositories;
 
 import edu.aitu.oop3.db.Database;
+import edu.aitu.oop3.entities.Guests;
 import edu.aitu.oop3.entities.Reservations;
+import edu.aitu.oop3.milestone2.generics.Repository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostgresReservationRepository implements ReservationRepository {
+public class PostgresReservationRepository implements ReservationRepository, Repository<Reservations, Integer> {
     private final Database db;
     //constructor
     public PostgresReservationRepository(Database db) {
@@ -47,8 +49,11 @@ public class PostgresReservationRepository implements ReservationRepository {
         }
     }
 
+
+
+
     @Override
-    public Reservations findById(int id) {
+    public Reservations findReservationById(int id) {
         String sql = "SELECT * FROM Reservations WHERE reservation_id = ?";
 
         try(Connection connection = db.getConnection();  PreparedStatement stmt = connection.prepareStatement(sql)){
@@ -102,6 +107,10 @@ public class PostgresReservationRepository implements ReservationRepository {
         } catch (SQLException e) {
             throw new RuntimeException("DB error while finding reservations",e);
         }
+    }
+    @Override
+    public Reservations findById(Integer id) {
+        return findReservationById(id);
     }
 
     @Override

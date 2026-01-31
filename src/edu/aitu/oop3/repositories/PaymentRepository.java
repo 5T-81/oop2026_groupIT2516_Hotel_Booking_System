@@ -4,7 +4,7 @@ import edu.aitu.oop3.db.Database;
 
 import java.sql.*;
 
-public class PaymentRepository {
+public class     PaymentRepository {
     private final Database db;//only filed
 
     //constructor
