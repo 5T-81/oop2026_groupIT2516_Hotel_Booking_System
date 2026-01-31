@@ -21,7 +21,7 @@ public class PaymentService implements PaymentServiceInterface {
     @Override //check if pay should return boolean or no need.(if not update it to void here and in interface too)
     public int pay(int reservation_id,double amount, String payment_method) {//(need update) use payment repo to insert the data created
         //if reservation doesn't exist in the first place
-        if(reservationRepository.findById(reservation_id) == null){
+        if(reservationRepository.findReservationById(reservation_id) == null){
             throw new PaymentDeclinedException("Reservation Not Found" + reservation_id);
         }
         if (amount <= 0) {
