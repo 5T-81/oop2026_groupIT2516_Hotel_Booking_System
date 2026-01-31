@@ -45,7 +45,7 @@ public class ReservationService implements ReservationServiceInterface {
             throw new IllegalArgumentException("Invalid reservation Id");
         }
         //check if reservation exist
-        Reservations existing = reservationRepository.findById(reservation_Id);
+        Reservations existing = reservationRepository.findReservationById(reservation_Id);
         if(existing == null) {
             throw new RuntimeException("Reservation id not found");
         }
