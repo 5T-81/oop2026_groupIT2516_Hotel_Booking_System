@@ -9,8 +9,8 @@ public class RoomFactory {
                 return new StandardRoom(room_id,status);
             case SUITE:
                 return new Suite(room_id, status);
-            case DORM:
-                return new DormBed(room_id, status);
+            case STUDIO:
+                return new Studio(room_id, status);
             default:
                 throw new IllegalArgumentException("Unknown room type");
         }

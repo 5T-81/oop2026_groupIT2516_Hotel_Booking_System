@@ -3,6 +3,7 @@ package edu.aitu.oop3.milestone2.builder;
 import java.time.LocalDate;
 
 public class ReservationDetails {
+    //fields
     private final int guest_id;
     private final int room_id;
     private final LocalDate check_in;
@@ -10,6 +11,7 @@ public class ReservationDetails {
     private final String paymentMethod;
     private final double amount;
 
+    //constructor takes builder to build the constructor
     private ReservationDetails(Builder builder) {
         this.guest_id = builder.guest_id;
         this.room_id = builder.room_id;
@@ -19,7 +21,7 @@ public class ReservationDetails {
         this.amount = builder.amount;
     }
 
-    //Builder starts here
+    //Builder starts here (static class)
     public static class Builder {
         private int guest_id;
         private int room_id;
@@ -30,7 +32,7 @@ public class ReservationDetails {
 
         public Builder guest_id(int guest_id) {
             this.guest_id = guest_id;
-            return this; //return the object itself not the value of ids
+            return this; //return the object itself(builder) not the value of ids
         }
         public Builder room_id(int room_id) {
             this.room_id = room_id;
@@ -59,7 +61,8 @@ public class ReservationDetails {
             if (check_in == null || check_out == null) throw new IllegalArgumentException("Dates are required");
             if (!check_in.isBefore(check_out)) throw new IllegalArgumentException("checkIn must be before checkOut");
 
-            return new ReservationDetails(this);//creates the real object
+            //creates the real object
+            return new ReservationDetails(this);
         }
     }
 }

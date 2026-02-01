@@ -4,5 +4,5 @@ package edu.aitu.oop3.milestone2.factory;
 public enum RoomType {
     STANDARD,
     SUITE,
-    DORM
+    STUDIO
 }
