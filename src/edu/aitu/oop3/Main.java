@@ -110,7 +110,7 @@ public class    Main {
                 RoomFactory.createRoom(RoomType.STANDARD, 4, "AVAILABLE"),
                 RoomFactory.createRoom(RoomType.STUDIO, 5, "BOOKED")
         );
-
+        //using lambda to search of an empty room
         List<Rooms> availableRooms = searchService.filterRooms(
                 rooms,
                 room -> availabilityService.isRoomAvailable(
