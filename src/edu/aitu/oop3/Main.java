@@ -102,6 +102,7 @@ public class    Main {
         // using lambda: search for available room:
         RoomSearchService searchService = new RoomSearchService();
 
+
         List<Rooms> rooms = List.of(
                 //FACTORY usage: create a list of rooms with type(suite, studio, standard)
                 RoomFactory.createRoom(RoomType.STANDARD, 1, "AVAILABLE"),
